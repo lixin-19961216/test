@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqianjin.test.teststage.dao.ServerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.iqianjin.test.teststage.entity.ServerInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="api_url" property="apiUrl" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, api_url, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from server_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="findAllServerInfo" resultType="com.iqianjin.test.teststage.entity.ServerInfo">
+      select * from server_info
+    </select>
+
+    <select id="getAllServerInfo" resultType="java.lang.String">
+      select distinct api_url from server_info
+    </select>
+
+  <select id="findServerInfoByApiUrl" resultType="com.iqianjin.test.teststage.entity.ServerInfo">
+    select * from server_info where api_url = #{apiUrl, jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from server_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.iqianjin.test.teststage.entity.ServerInfo" >
+    insert into server_info (api_url, description,)
+    values (#{apiUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.iqianjin.test.teststage.entity.ServerInfo" >
+    insert into server_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="apiUrl != null" >
+        api_url,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiUrl != null" >
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqianjin.test.teststage.entity.ServerInfo" >
+    update server_info
+    <set >
+      <if test="apiUrl != null" >
+        api_url = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iqianjin.test.teststage.entity.ServerInfo" >
+    update server_info
+    set api_url = #{apiUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqianjin.test.teststage.dao.FaultReportMapper" >
+  <resultMap id="BaseResultMap" type="com.iqianjin.test.teststage.entity.FaultReport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fault_describe" property="faultDescribe" jdbcType="VARCHAR" />
+    <result column="fault_level" property="faultLevel" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="discovery_source" property="discoverySource" jdbcType="VARCHAR" />
+    <result column="influence_availability" property="influenceAvailability" jdbcType="VARCHAR" />
+    <result column="capital_loss" property="capitalLoss" jdbcType="VARCHAR" />
+    <result column="fault_category" property="faultCategory" jdbcType="VARCHAR" />
+    <result column="person_liable" property="personLiable" jdbcType="VARCHAR" />
+    <result column="responsibility_team" property="responsibilityTeam" jdbcType="VARCHAR" />
+    <result column="processing_procedure" property="processingProcedure" jdbcType="VARCHAR" />
+    <result column="impact_productline" property="impactProductline" jdbcType="VARCHAR" />
+    <result column="impact_coreindicators" property="impactCoreindicators" jdbcType="VARCHAR" />
+    <result column="impact_customservice" property="impactCustomservice" jdbcType="VARCHAR" />
+    <result column="impact_function" property="impactFunction" jdbcType="VARCHAR" />
+    <result column="fault_reason" property="faultReason" jdbcType="VARCHAR" />
+    <result column="fault_firstdiscovery" property="faultFirstdiscovery" jdbcType="VARCHAR" />
+    <result column="fault_firsthandlingperson" property="faultFirsthandlingperson" jdbcType="VARCHAR" />
+    <result column="fault_sla" property="faultSla" jdbcType="VARCHAR" />
+    <result column="followup_action" property="followupAction" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fault_describe, fault_level, start_time, end_time, discovery_source, influence_availability, 
+    capital_loss, fault_category, person_liable, responsibility_team, processing_procedure, 
+    impact_productline, impact_coreindicators, impact_customservice, impact_function, 
+    fault_reason, fault_firstdiscovery, fault_firsthandlingperson, fault_sla, followup_action, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fault_report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fault_report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.iqianjin.test.teststage.entity.FaultReport" >
+    insert into fault_report (id, fault_describe, fault_level, 
+      start_time, end_time, discovery_source, 
+      influence_availability, capital_loss, fault_category, 
+      person_liable, responsibility_team, processing_procedure, 
+      impact_productline, impact_coreindicators, 
+      impact_customservice, impact_function, fault_reason, 
+      fault_firstdiscovery, fault_firsthandlingperson, 
+      fault_sla, followup_action, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{faultDescribe,jdbcType=VARCHAR}, #{faultLevel,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{discoverySource,jdbcType=VARCHAR}, 
+      #{influenceAvailability,jdbcType=VARCHAR}, #{capitalLoss,jdbcType=VARCHAR}, #{faultCategory,jdbcType=VARCHAR}, 
+      #{personLiable,jdbcType=VARCHAR}, #{responsibilityTeam,jdbcType=VARCHAR}, #{processingProcedure,jdbcType=VARCHAR}, 
+      #{impactProductline,jdbcType=VARCHAR}, #{impactCoreindicators,jdbcType=VARCHAR}, 
+      #{impactCustomservice,jdbcType=VARCHAR}, #{impactFunction,jdbcType=VARCHAR}, #{faultReason,jdbcType=VARCHAR}, 
+      #{faultFirstdiscovery,jdbcType=VARCHAR}, #{faultFirsthandlingperson,jdbcType=VARCHAR}, 
+      #{faultSla,jdbcType=VARCHAR}, #{followupAction,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.iqianjin.test.teststage.entity.FaultReport" >
+    insert into fault_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="faultDescribe != null" >
+        fault_describe,
+      </if>
+      <if test="faultLevel != null" >
+        fault_level,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="discoverySource != null" >
+        discovery_source,
+      </if>
+      <if test="influenceAvailability != null" >
+        influence_availability,
+      </if>
+      <if test="capitalLoss != null" >
+        capital_loss,
+      </if>
+      <if test="faultCategory != null" >
+        fault_category,
+      </if>
+      <if test="personLiable != null" >
+        person_liable,
+      </if>
+      <if test="responsibilityTeam != null" >
+        responsibility_team,
+      </if>
+      <if test="processingProcedure != null" >
+        processing_procedure,
+      </if>
+      <if test="impactProductline != null" >
+        impact_productline,
+      </if>
+      <if test="impactCoreindicators != null" >
+        impact_coreindicators,
+      </if>
+      <if test="impactCustomservice != null" >
+        impact_customservice,
+      </if>
+      <if test="impactFunction != null" >
+        impact_function,
+      </if>
+      <if test="faultReason != null" >
+        fault_reason,
+      </if>
+      <if test="faultFirstdiscovery != null" >
+        fault_firstdiscovery,
+      </if>
+      <if test="faultFirsthandlingperson != null" >
+        fault_firsthandlingperson,
+      </if>
+      <if test="faultSla != null" >
+        fault_sla,
+      </if>
+      <if test="followupAction != null" >
+        followup_action,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="faultDescribe != null" >
+        #{faultDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevel != null" >
+        #{faultLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discoverySource != null" >
+        #{discoverySource,jdbcType=VARCHAR},
+      </if>
+      <if test="influenceAvailability != null" >
+        #{influenceAvailability,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalLoss != null" >
+        #{capitalLoss,jdbcType=VARCHAR},
+      </if>
+      <if test="faultCategory != null" >
+        #{faultCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="personLiable != null" >
+        #{personLiable,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityTeam != null" >
+        #{responsibilityTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="processingProcedure != null" >
+        #{processingProcedure,jdbcType=VARCHAR},
+      </if>
+      <if test="impactProductline != null" >
+        #{impactProductline,jdbcType=VARCHAR},
+      </if>
+      <if test="impactCoreindicators != null" >
+        #{impactCoreindicators,jdbcType=VARCHAR},
+      </if>
+      <if test="impactCustomservice != null" >
+        #{impactCustomservice,jdbcType=VARCHAR},
+      </if>
+      <if test="impactFunction != null" >
+        #{impactFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="faultReason != null" >
+        #{faultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="faultFirstdiscovery != null" >
+        #{faultFirstdiscovery,jdbcType=VARCHAR},
+      </if>
+      <if test="faultFirsthandlingperson != null" >
+        #{faultFirsthandlingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="faultSla != null" >
+        #{faultSla,jdbcType=VARCHAR},
+      </if>
+      <if test="followupAction != null" >
+        #{followupAction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqianjin.test.teststage.entity.FaultReport" >
+    update fault_report
+    <set >
+      <if test="faultDescribe != null" >
+        fault_describe = #{faultDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevel != null" >
+        fault_level = #{faultLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discoverySource != null" >
+        discovery_source = #{discoverySource,jdbcType=VARCHAR},
+      </if>
+      <if test="influenceAvailability != null" >
+        influence_availability = #{influenceAvailability,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalLoss != null" >
+        capital_loss = #{capitalLoss,jdbcType=VARCHAR},
+      </if>
+      <if test="faultCategory != null" >
+        fault_category = #{faultCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="personLiable != null" >
+        person_liable = #{personLiable,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityTeam != null" >
+        responsibility_team = #{responsibilityTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="processingProcedure != null" >
+        processing_procedure = #{processingProcedure,jdbcType=VARCHAR},
+      </if>
+      <if test="impactProductline != null" >
+        impact_productline = #{impactProductline,jdbcType=VARCHAR},
+      </if>
+      <if test="impactCoreindicators != null" >
+        impact_coreindicators = #{impactCoreindicators,jdbcType=VARCHAR},
+      </if>
+      <if test="impactCustomservice != null" >
+        impact_customservice = #{impactCustomservice,jdbcType=VARCHAR},
+      </if>
+      <if test="impactFunction != null" >
+        impact_function = #{impactFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="faultReason != null" >
+        fault_reason = #{faultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="faultFirstdiscovery != null" >
+        fault_firstdiscovery = #{faultFirstdiscovery,jdbcType=VARCHAR},
+      </if>
+      <if test="faultFirsthandlingperson != null" >
+        fault_firsthandlingperson = #{faultFirsthandlingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="faultSla != null" >
+        fault_sla = #{faultSla,jdbcType=VARCHAR},
+      </if>
+      <if test="followupAction != null" >
+        followup_action = #{followupAction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iqianjin.test.teststage.entity.FaultReport" >
+    update fault_report
+    set fault_describe = #{faultDescribe,jdbcType=VARCHAR},
+      fault_level = #{faultLevel,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      discovery_source = #{discoverySource,jdbcType=VARCHAR},
+      influence_availability = #{influenceAvailability,jdbcType=VARCHAR},
+      capital_loss = #{capitalLoss,jdbcType=VARCHAR},
+      fault_category = #{faultCategory,jdbcType=VARCHAR},
+      person_liable = #{personLiable,jdbcType=VARCHAR},
+      responsibility_team = #{responsibilityTeam,jdbcType=VARCHAR},
+      processing_procedure = #{processingProcedure,jdbcType=VARCHAR},
+      impact_productline = #{impactProductline,jdbcType=VARCHAR},
+      impact_coreindicators = #{impactCoreindicators,jdbcType=VARCHAR},
+      impact_customservice = #{impactCustomservice,jdbcType=VARCHAR},
+      impact_function = #{impactFunction,jdbcType=VARCHAR},
+      fault_reason = #{faultReason,jdbcType=VARCHAR},
+      fault_firstdiscovery = #{faultFirstdiscovery,jdbcType=VARCHAR},
+      fault_firsthandlingperson = #{faultFirsthandlingperson,jdbcType=VARCHAR},
+      fault_sla = #{faultSla,jdbcType=VARCHAR},
+      followup_action = #{followupAction,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

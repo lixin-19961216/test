@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqianjin.test.teststage.dao.PerformanceTestReportMapper" >
+  <resultMap id="BaseResultMap" type="com.iqianjin.test.teststage.entity.PerformanceTestReport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="plat_form" property="platForm" jdbcType="TINYINT" />
+    <result column="package_type" property="packageType" jdbcType="TINYINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="upload_user" property="uploadUser" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version, plat_form, package_type, create_date, upload_user, file_name, remark, 
+    flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from performance_test_report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findReportByPlatFormAndVersion"
+          resultType="com.iqianjin.test.teststage.entity.PerformanceTestReport">
+    select * from performance_test_report where plat_form = #{platForm} and version like "%"#{version}"%" order by id desc
+  </select>
+
+  <select id="findReportByPlatForm" resultType="com.iqianjin.test.teststage.entity.PerformanceTestReport">
+    select * from performance_test_report where plat_form = #{platForm} order by id desc
+  </select>
+
+  <select id="findReportByVersion" resultType="com.iqianjin.test.teststage.entity.PerformanceTestReport">
+    select * from performance_test_report where version like "%"#{version}"%" order by id desc
+  </select>
+
+  <select id="findAll" resultType="com.iqianjin.test.teststage.entity.PerformanceTestReport">
+    select * from performance_test_report order by id desc
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from performance_test_report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.iqianjin.test.teststage.entity.PerformanceTestReport" >
+    insert into performance_test_report (version, plat_form,
+      package_type, create_date, upload_user, 
+      file_name, remark, flag
+      )
+    values (#{version,jdbcType=VARCHAR}, #{platForm,jdbcType=TINYINT},
+      #{packageType,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{uploadUser,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.iqianjin.test.teststage.entity.PerformanceTestReport" >
+    insert into performance_test_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="platForm != null" >
+        plat_form,
+      </if>
+      <if test="packageType != null" >
+        package_type,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="uploadUser != null" >
+        upload_user,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="platForm != null" >
+        #{platForm,jdbcType=TINYINT},
+      </if>
+      <if test="packageType != null" >
+        #{packageType,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadUser != null" >
+        #{uploadUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.iqianjin.test.teststage.entity.PerformanceTestReport" >
+    update performance_test_report
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="platForm != null" >
+        plat_form = #{platForm,jdbcType=TINYINT},
+      </if>
+      <if test="packageType != null" >
+        package_type = #{packageType,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadUser != null" >
+        upload_user = #{uploadUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.iqianjin.test.teststage.entity.PerformanceTestReport" >
+    update performance_test_report
+    set version = #{version,jdbcType=VARCHAR},
+      plat_form = #{platForm,jdbcType=TINYINT},
+      package_type = #{packageType,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      upload_user = #{uploadUser,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
